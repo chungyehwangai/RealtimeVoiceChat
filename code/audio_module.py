@@ -120,7 +120,9 @@ class AudioProcessor:
             )
         elif engine == "kokoro":
             self.engine = KokoroEngine(
-                voice="af_heart",
+                #voice="af_heart",
+                #voice="zf_xiaoxiao",
+                voice="zf_001",
                 default_speed=1.26,
                 trim_silence=True,
                 silence_threshold=0.01,

@@ -25,8 +25,8 @@ START_STT_SERVER = False # Set to True to use the client/server version of Realt
 DEFAULT_RECORDER_CONFIG: Dict[str, Any] = {
     "use_microphone": False,
     "spinner": False,
-    "model": "base.en",
-    "realtime_model_type": "base.en",
+    "model": "small", #/home/eapet/ws/Breeze-ASR-25-ct2",
+    "realtime_model_type": "base",
     "use_main_model_for_realtime": False,
     "language": "en", # Default, will be overridden by source_language in __init__
     "silero_sensitivity": 0.05,
@@ -47,7 +47,11 @@ DEFAULT_RECORDER_CONFIG: Dict[str, Any] = {
     "allowed_latency_limit": 500,
     # Callbacks will be added dynamically in _create_recorder
     "debug_mode": True,
-    "initial_prompt_realtime": "The sky is blue. When the sky... She walked home. Because he... Today is sunny. If only I...",
+    #"initial_prompt_realtime": "The sky is blue. When the sky... She walked home. Because he... Today is sunny. If only I...",
+    "initial_prompt_realtime": "天空是藍色的。當天空……她走回家。因為他……今天是晴天。要是我……就好了。",
+    "faster_whisper_vad_filter": False,
+    "compute_type" : "int8",
+    "print_transcription_time" : True,
     "faster_whisper_vad_filter": False,
 }
 
@@ -502,7 +506,8 @@ class TranscriptionProcessor:
         if not ends_with_punctuation and not force_yield:
             return
 
-        normalized_text = self._normalize_text(stripped_text_raw)
+        #normalized_text = self._normalize_text(stripped_text_raw)
+        normalized_text = stripped_text_raw ##self._normalize_text(stripped_text_raw)        
         if not normalized_text: # Handle cases where normalization leaves empty string
             return
 
